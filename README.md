@@ -1,4 +1,4 @@
-#PERN Stack Project (Backend + Frontend with Next.js)
+# PERN Stack Project (Backend + Frontend with Next.js)
 
 This is a full-stack project using the PERN stack, which includes PostgreSQL, Express.js, Next.js, and Node.js. The backend is implemented with Node.js and Express, while the frontend uses Next.js. Prisma is used as the ORM to manage database interactions. The project is configured to be easily run in a Docker environment.
 
@@ -15,7 +15,7 @@ Docker
 Docker Compose
 Node.js (for running Prisma CLI commands locally)
 
-###Getting Started
+### Getting Started
 
 1. Clone the Repository
    First, clone the repository to your local machine:
@@ -58,7 +58,7 @@ bash
 Copiar código
 docker-compose down
 
-###Additional Notes
+### Additional Notes
 
 Ensure that ports 4000 and 5432 are not being used by other services on your machine.
 Prisma is used to interact with the PostgreSQL database. You can manage the schema, run migrations, and generate the Prisma Client using Prisma commands.

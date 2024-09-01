@@ -1,38 +1,65 @@
-## Getting Started
+#PERN Stack Project (Backend + Frontend with Next.js)
 
-First, run the development server:
+This is a full-stack project using the PERN stack, which includes PostgreSQL, Express.js, Next.js, and Node.js. The backend is implemented with Node.js and Express, while the frontend uses Next.js. Prisma is used as the ORM to manage database interactions. The project is configured to be easily run in a Docker environment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+backend/: Contains the backend code written in Node.js with Express and Prisma for ORM.
+prisma/: Contains the Prisma schema and migration files.
+frontend/: Contains the frontend code using Next.js.
+.gitignore: Specifies which files or folders should be ignored by Git.
+docker-compose.yml: Docker Compose configuration file for orchestrating the backend and PostgreSQL database containers.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+###Prerequisites
+Before getting started, make sure you have the following installed on your machine:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Docker
+Docker Compose
+Node.js (for running Prisma CLI commands locally)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+###Getting Started
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Clone the Repository
+   First, clone the repository to your local machine:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+bash
+Copiar código
+git clone https://github.com/galdinorenantruta/pern-crud-app.git
+cd pern-crud-app 2. Configure Environment Variables
+The necessary environment variables for the backend are defined in the docker-compose.yml. The default configuration uses a PostgreSQL database running in a container.
 
-## Learn More
+3. Install Dependencies
+   Before building the Docker containers, you may want to install the dependencies locally (if you're planning to run migrations or generate Prisma client):
 
-To learn more about Next.js, take a look at the following resources:
+bash
+Copiar código
+cd backend
+npm install 4. Run Database Migrations
+If you haven't set up the database yet, you can apply the Prisma migrations to set up the database schema:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+bash
+Copiar código
+npx prisma migrate dev
+This command will apply any pending migrations and update your PostgreSQL database schema accordingly.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Build and Start the Containers with Docker
+   With Docker and Docker Compose installed, you can run the entire project using the following command:
 
-## Deploy on Vercel
+bash
+Copiar código
+docker-compose up --build
+This command will:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Backend: Build the Docker image for the backend and run it on port 4000.
+Database: Start a PostgreSQL container using version 12, accessible on port 5432. 6. Accessing the Application
+The backend will be accessible at http://localhost:4000.
+The frontend will be accessible at http://localhost:3000 (if configured in Docker, see below). 7. Stopping the Containers
+To stop and remove the created containers, run:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+bash
+Copiar código
+docker-compose down
+
+###Additional Notes
+
+Ensure that ports 4000 and 5432 are not being used by other services on your machine.
+Prisma is used to interact with the PostgreSQL database. You can manage the schema, run migrations, and generate the Prisma Client using Prisma commands.
+If you need to run database migrations or seed data, you can do so with the Prisma CLI, either inside or outside of Docker.
